@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="DemoBuild2019.Views.CarrouselViewPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Clicked="AddItem_Clicked" />
+    </ContentPage.ToolbarItems>
+
+    <CarouselView x:Name="ItemsListView"
+                  ItemsSource="{Binding Items}" 
+                  HeightRequest="300"
+                  VerticalOptions="Center">
+        <d:CarouselView.ItemsSource>
+            <x:Array Type="{x:Type x:String}">
+                <x:String>First Item</x:String>
+                <x:String>Second Item</x:String>
+                <x:String>Third Item</x:String>
+                <x:String>Forth Item</x:String>
+                <x:String>Fifth Item</x:String>
+                <x:String>Sixth Item</x:String>
+            </x:Array>
+        </d:CarouselView.ItemsSource>
+
+        <CarouselView.ItemsLayout>
+            <GridItemsLayout Orientation="Horizontal"
+                             SnapPointsAlignment="Center"
+                             SnapPointsType="Mandatory"/>
+        </CarouselView.ItemsLayout>
+
+        <CarouselView.ItemTemplate>
+            <DataTemplate>
+                <Frame WidthRequest="300" BackgroundColor="WhiteSmoke" Padding="10" CornerRadius="20" Margin="20">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Text="{Binding Text}" 
+                                    d:Text="{Binding .}"
+                                    LineBreakMode="NoWrap" 
+                                    Style="{DynamicResource ListItemTextStyle}" 
+                                    FontSize="16" />
+                        <Label Text="{Binding Description}" 
+                                    d:Text="Item description"
+                                    LineBreakMode="NoWrap"
+                                    Style="{DynamicResource ListItemDetailTextStyle}"
+                                    FontSize="13"
+                                   Grid.Row="1"/>
+                    </Grid>
+                </Frame>
+            </DataTemplate>
+        </CarouselView.ItemTemplate>
+    </CarouselView>
+</ContentPage>
